@@ -16,28 +16,18 @@ Plugin 'VundleVim/Vundle.vim'
 
 " plugins go here
 Plugin 'alx741/vim-hindent'
-Plugin 'ervandew/supertab'
 Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'justinmk/vim-syntax-extra'
+Plugin 'lervag/vimtex'
 Plugin 'majutsushi/tagbar'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'neovimhaskell/haskell-vim'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'thaerkh/vim-indentguides'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-scripts/CRefVim'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'roxma/nvim-yarp'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'Shougo/deoplete-clangx'
-Plugin 'deoplete-plugins/deoplete-jedi'
-Plugin 'tbodt/deoplete-tabnine'
-Plugin 'lervag/vimtex'
 " end plugins
 
 call vundle#end()
@@ -100,6 +90,9 @@ set hidden
 
 " preview window appears at bottom
 set splitbelow splitright
+
+" html specific indentation
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
 " ======================================
 " GUI:
@@ -230,11 +223,6 @@ nnoremap <F6> :setlocal spell! spelllang=en_us<CR>
 nnoremap <leader>y "*y
 vnoremap <leader>y "*y
 
-" zoom in and out
-let g:fnt_sizes = [12, 24]
-let g:fnt_index = 0
-let g:fnt_size  = g:fnt_sizes[g:fnt_index]
-
 " ======================================
 " PLUGINS:
 " ======================================
@@ -246,27 +234,8 @@ let g:airline_theme='molokai'
 " enable bar at top that shows all buffers
 let g:airline#extensions#tabline#enabled=1
 
-" c++ highlighting options
-let g:cpp_class_scope_highlight=1
-let g:cpp_member_variable_highlight=1
-let g:cpp_experimental_template_highlight=1
-let g:cpp_concepts_highlight=1
-
-" enable indent guides
-let g:indent_guides_enable_on_vim_startup=1
-
-" disable indent guides for tabbed files
-let g:indent_guides_tab_guides=0
-
-" darken indent guides
-let g:indent_guides_color_change_percent=2
-
 " default to latex instaed of plaintex
 let g:tex_flavor="latex"
-
-" haskell indentation
-let g:hindent_on_save=1
-let g:hindent_line_length=80
 
 " easy align settings
 xmap ga <Plug>(EasyAlign)
@@ -277,10 +246,6 @@ nnoremap <F4> :TagbarToggle<CR>
 
 " change tagbar fold icons
 let g:tagbar_iconchars=['▶', '▼']
-
-" deoplete
-let g:deoplete#enable_at_startup=1
-call deoplete#custom#var('clangx', 'clang_binary', 'C:\Program Files\LLVM\bin\clang.exe')
 
 " rainbow parentheses files
 augroup rainbow_lisp
